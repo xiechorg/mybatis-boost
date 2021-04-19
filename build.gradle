@@ -1,0 +1,51 @@
+// 导入外部配置，build-config.gradle里面配置了一些公共属性用于jar包版本管理
+apply from: "build-config.gradle"
+// 为所有子模块应用java插件
+apply plugin: "java"
+
+group = "org.xiech.mybatis-boost"
+version = "1.0.0-SNAPSHOT"
+
+
+// 使用了Maven的中央仓库及Spring自己的仓库（也可以指定其他仓库）
+repositories {
+    // 使用maven的本地仓库（优先使用）
+    // mavenLocal()
+    // 阿里云的仓库
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    // Maven的中央仓库
+    mavenCentral()
+}
+
+// 依赖关系
+dependencies {
+
+
+    compile "commons-io:commons-io:$commonsIoVersion"
+    compile "org.apache.commons:commons-lang3:$commonsLang3Version"
+    //compile "cn.hutool:hutool-all:$hutoolVersion"
+
+    implementation "org.mybatis:mybatis:$mybatisVersion"
+
+    compileOnly "org.projectlombok:lombok:1.18.12"
+    annotationProcessor "org.projectlombok:lombok:1.18.12"
+    testCompileOnly "org.projectlombok:lombok:1.18.12"
+    testAnnotationProcessor "org.projectlombok:lombok:1.18.12"
+
+    // 使用junit5，并支持junit 3/4，详情请看：https://docs.gradle.org/current/userguide/java_testing.html#executing_legacy_tests_with_junit_vintage
+    testImplementation "org.junit.jupiter:junit-jupiter-api:+" //5.6.0
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testCompileOnly "junit:junit:+" //4.13
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine"
+
+}
+
+// 集成测试
+test {
+    useJUnitPlatform()
+}
+
+// 配置一个gradle wrapper task，用于生成指定版本的gradlew可执行脚本。
+wrapper {
+    gradleVersion = "6.8"
+}

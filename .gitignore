@@ -24,26 +24,26 @@ hs_err_pid*
 
 
 #idea
-/.idea
-/*/.idea
+/**/.idea
 
 #eclipse
-/.settings
-/.project
-/.classpath
-/*/.settings
-/*/.project
-/*/.classpath
+/**/.settings
+/**/.project
+/**/.classpath
 
 #maven
-/target
-/*/target
+/**/target
 
 #gradle
-/.gradle
-/*/.gradle
-gradle-wrapper.properties
+/**/.gradle
+gradle/wrapper
+gradlew
+gradlew.bat
 
 #Java SE
-/build
-/*/build
+/**/bin
+/**/build
+/**/out
+
+#vue
+/**/node_modules
